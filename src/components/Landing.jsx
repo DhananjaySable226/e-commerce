@@ -17,7 +17,7 @@ export default function Landing() {
             <div className="text-center mt-10 ">
                 <div className="flex items-center h-screen text-center">
                     <button
-                        style={{ width: '130px', height: '40px', border: 'none', textAlign:'center', borderRadius:'10px', marginLeft:"45%", hover:"#357ab8"}}
+                        style={{ width: '130px', height: '40px', border: 'none', textAlign:'center', borderRadius:'10px', marginLeft:"45%",backgroundColor:'blue'}}
                         className="bg-red-700 hover:bg-red-800 text-white text-lg font-semibold rounded"
                         onClick={handleGetStarted}
                     >
