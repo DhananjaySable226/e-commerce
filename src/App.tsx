@@ -27,6 +27,9 @@ export default function App() {
           <Route path="/auth" element={<Auth setUser={setUser} />} />
           <Route path="/products" element={<Products user={user} />} />
           <Route path="/product/:id" element={<ProductView user={user} />} />
+          <Route path="/login" element={<Auth mode="login" setUser={setUser} />} />
+          <Route path="/signup" element={<Auth mode="signup" setUser={setUser} />} />
+
         </Routes>
       </div>
     </Router>

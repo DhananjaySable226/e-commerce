@@ -5,14 +5,27 @@ import logo from '../assets/Logo.png';
 
 export default function Navbar({ user, setUser }) {
   const navigate = useNavigate();
-  
+
   const logout = () => {
     localStorage.removeItem('loggedUser');
     setUser(null);
     navigate('/auth');
   };
+  const getGreeting = () => {
+    const hour = new Date().getHours();
 
-  // Show loading state while determining authentication status
+    if (hour < 12) return "Good Morning ☀️";
+    if (hour < 18) return "Good Afternoon 🌤️";
+    return "Good Evening 🌙";
+  };
+
+  const capitalize = (name) =>
+    name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+
+  const greeting = getGreeting();
+  const firstName = user?.username ? capitalize(user.username) : "";
+
+
   if (user === undefined) {
     return (
       <div className="navbar">
@@ -39,14 +52,14 @@ export default function Navbar({ user, setUser }) {
       />
       {!user ? (
         <div className="navbar-buttons">
-          <button onClick={() => navigate('/auth')}>Login</button>
-          <button onClick={() => navigate('/auth')}>Sign Up</button>
+          <button className="loign-sign" onClick={() => navigate('/login')}>Login</button>
+          <button className="loign-sign" onClick={() => navigate('/signup')}>Sign Up</button>
         </div>
       ) : (
         <div className="navbar-user">
-          <span>Hi, {user.username}</span>
-          <button onClick={() => navigate('/products')}>Products</button>
-          <button onClick={logout}>Logout</button>
+          <span className='greeting'>Hii {greeting}, {firstName}</span>
+          <button className="loign-sign" onClick={() => navigate('/products')}>Products</button>
+          <button className="loign-sign" onClick={logout}>Logout</button>
         </div>
       )}
     </div>

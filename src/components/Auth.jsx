@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Auth.css';
 
-export default function Auth({ setUser }) {
-    const [isLogin, setIsLogin] = useState(true);
+export default function Auth({ setUser, mode='login' }) {
+    const [isLogin, setIsLogin] = useState(mode === "login");
     const [form, setForm] = useState({ username: '', email: '', password: '', confirm: '' });
     const navigate = useNavigate();
+
+    useEffect(() => {
+        setIsLogin(mode === "login"); // 🔥 FIX: update when route changes
+    }, [mode]);
 
     const handle = e => setForm({ ...form, [e.target.name]: e.target.value });
 
@@ -38,37 +42,14 @@ export default function Auth({ setUser }) {
                 <h2 className="auth-heading">{isLogin ? 'Login' : 'Sign Up'}</h2>
 
                 {!isLogin && (
-                    <input
-                        name="email"
-                        placeholder="Email"
-                        onChange={handle}
-                        className="auth-input"
-                    />
+                    <input name="email" placeholder="Email" onChange={handle} className="auth-input" />
                 )}
 
-                <input
-                    name="username"
-                    placeholder="Username"
-                    onChange={handle}
-                    className="auth-input"
-                />
-
-                <input
-                    name="password"
-                    type="password"
-                    placeholder="Password"
-                    onChange={handle}
-                    className="auth-input"
-                />
+                <input name="username" placeholder="Username" onChange={handle} className="auth-input" />
+                <input name="password" type="password" placeholder="Password" onChange={handle} className="auth-input" />
 
                 {!isLogin && (
-                    <input
-                        name="confirm"
-                        type="password"
-                        placeholder="Confirm Password"
-                        onChange={handle}
-                        className="auth-input"
-                    />
+                    <input name="confirm" type="password" placeholder="Confirm Password" onChange={handle} className="auth-input" />
                 )}
 
                 <button className="auth-button" onClick={isLogin ? login : signup}>

@@ -10,3 +10,22 @@
 .navbar-btn {
     margin-left: 10px;
 }
+
+.loign-sign {
+    margin-left:20px;
+    height: 35px;
+    width: 70px;
+}
+
+.loign-sign:hover {
+    background-color: #357ab8;
+    border:none;
+    border-radius: 3px;
+}
+
+.greeting{
+    background-color: #357ab8;
+    font-family: 'Courier New', Courier, monospace;
+    padding: 10px;
+    border-radius: 20px;
+}
